@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Text Box</title>
+	<link rel="stylesheet" type="text/css" href="TextBox.css">
+</head>
+<body>
+	<h1 align="center">Text Box</h1>
+	<div align="center" class="div1">
+		<form>
+			<label>Enter your text below</label><br>
+			<textarea rows="15" cols="60" id="text"></textarea><br>
+			<button type="button" onclick="functionIs()">UpperCase</button>
+			<button type="button" onclick="functionNot()">LowerCase</button>
+			<button type="button" onclick="changeCo()">Color</button>
+			<button type="button" onclick="findText()">Find</button>
+			<button type="button" onclick="underLine()">UnderLine</button><br><br>
+
+			<button type="button" onclick="alignText()">AlignText</button>
+			<button type="button" onclick="incSize()">IncreaseSize</button>
+			<button type="button" onclick="decSize()">DecreaseSize</button>
+			<h2 id="textInfo">This text contains 0 words and 0 characters</h2>
+		</form>
+	</div>
+
+	<script type="text/javascript">
+
+		let text=document.getElementById("text");
+		let textInfo=document.getElementById('textInfo');
+
+		function functionIs()
+		{
+			text.value=text.value.toUpperCase();
+		}
+
+		function functionNot()
+		{
+			text.value=text.value.toLowerCase();
+		}
+
+		function changeCo()
+		{
+			text.style.color=prompt("Enter your favorite color".toLowerCase());
+		}
+
+		function findText()
+		{
+			let search=prompt("Enter your search text");
+			if((text.value.toLowerCase()).includes(search.toLowerCase()))
+			{
+				alert(`${search} is present in text`);
+			}
+			else
+			{
+				alert(`${search} is not found`);
+			}
+		}
+
+		function underLine()
+		{
+			//let clr=prompt("Enter your color for underline")
+			let clr=prompt("Enter your favorite color for underline");
+			text.style.textDecoration=`underline 2px solid ${clr.toLowerCase()}`;
+		}
+
+		let alignSta='left';
+		function alignText()
+		{
+				if(alignSta=="left")
+				{
+					text.style.textAlign='center';
+					alignSta='center';
+				}
+				else if(alignSta=="center")
+				{
+					text.style.textAlign='right';
+					alignSta='right';
+				}
+				else
+				{
+					text.style.textAlign='left';
+					alignSta='left';
+				}
+		}
+
+		let incSi=5;
+		let curSize=15;
+		function incSize()
+		{
+				text.style.fontSize=`${curSize+=incSi}px`;
+		}
+		let decSi=5;
+		function decSize()
+		{
+				text.style.fontSize=`${curSize-=decSi}px`;
+		}
+
+		function updateInfo()
+		{
+			let numberOfWords=text.value.trim().split(" ").length;
+			textInfo.innerHTML=`This text contains ${numberOfWords} words and ${text.value.length} character`
+		}
+	</script>
+
+</body>
+</html>
